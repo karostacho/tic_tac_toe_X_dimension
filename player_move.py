@@ -1,4 +1,4 @@
-from display_board import print_board
+from display import print_board, ask_for_move, inform_the_box_is_taken, inform_the_move_is_impossible
 import random
 
 def is_box_taken(board, move):
@@ -7,23 +7,29 @@ def is_box_taken(board, move):
             return False
     return True
 
-def make_user_move(board):
-    user_move = input("What's your move?")
+def make_user_move(board, numbers):
+    user_move = ask_for_move()
+    if not user_move.isdigit():
+        inform_the_move_is_impossible(user_move)
+        return make_user_move(board,numbers)
     user_move = int(user_move)
+    if user_move not in numbers:
+        inform_the_move_is_impossible(user_move)
+        return make_user_move(board,numbers)
     repeated_move = is_box_taken(board, user_move)
-    if repeated_move == False:
-        return user_move
+    if repeated_move:
+        inform_the_box_is_taken(user_move)
+        return make_user_move(board,numbers)
     else:
-        print(f"Box {user_move} is already taken, please select another box")
-        return make_user_move(board)
+        return user_move
     
 def make_computer_move(numbers, board):
     computer_move = random.choice(numbers)
     repeated_move = is_box_taken(board, computer_move)
-    if repeated_move == False:
-        return computer_move
-    else: 
+    if repeated_move:
         return make_computer_move(numbers, board)
+    else: 
+        return computer_move
 
 def mark_move_on_the_board(board, move, X_or_O):
     for row in board:
