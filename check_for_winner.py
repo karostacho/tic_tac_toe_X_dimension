@@ -1,8 +1,19 @@
-def is_game_over(board):
+from display import annouce_the_draw
+
+def is_game_over(board, numbers):
     if check_diags(board) or check_columns_and_rows(board):
+        return True
+    if is_draw(board, numbers) == True:
         return True
     else:
         return False   
+
+def is_draw(board, numbers):
+    list_of_boxes = sum(board,[])
+    if not any(item in numbers for item in list_of_boxes) and not check_diags(board) and not check_columns_and_rows(board) :
+        return True
+    else:
+        return False
 
 def check_columns_and_rows(board):
     for i in range(len(board)):
