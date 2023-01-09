@@ -17,3 +17,7 @@ def inform_the_box_is_taken(user_move):
 def inform_the_move_is_impossible(user_move):
     print (f"There is no such a box: '{user_move}'. Please select an available box.")
 
+def ask_for_size_of_board():
+    return input("Please specify the size of your board. How many rows/columns would you like to have?")
+    
+

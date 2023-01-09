@@ -1,16 +1,24 @@
 from display import annouce_the_winner
 
-board = [["x", "x", "x"], [1, "x", "x"], ["o", "x", "o"]] 
-numbers = [1,2,3,4,5,6,7,8,9]
 
 
+def create_the_board(board_size):
+    x = int(board_size)
+    create_list_of_numbers(x)
+    board = []
+    for i in range(x):
+        row = []
+        for j in range(x):
+            row.append((((j+1)+(x*i))))
+        board.append(row)
+    
+    print(board)
 
-x= sum(board, [])
-print(x)
+def create_list_of_numbers(x):
+    numbers = []
+    for i in range(x*x):
+        numbers.append(i+1)
+    print(numbers)
 
-def check_if_draw(board, numbers):
-    list_of_boxes = sum(board,[])
-    if not any(item in numbers for item in list_of_boxes):
-        print("ok")
 
-check_if_draw(board, numbers)
+create_the_board()
