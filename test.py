@@ -1,38 +1,24 @@
-from display import annouce_the_winner
+from board_creation import create_the_board, create_list_of_numbers
+from player_move import mark_move_on_the_board, make_user_move, make_computer_move
+from display import print_board, annouce_the_winner, annouce_the_draw
+from check_for_winner import check_diags, check_columns_and_rows, is_game_over, is_draw  
+from smart_computer import make_smart_move
 
-board = [[1, 2, 3], [4, 4, 4], [7, 8, 1]] 
-
-def check_columns_and_rows(board):
-    for i in range(len(board)):
-        row = board[i]
-        column = [row[i] for row in board]
-        if row[1:] == row[:-1]:
-            return(row[0]) 
-        if column [1:] == column[:-1]:
-            return(column[0])
-    return False
-        
-        
-def check_diags(board):
-    diag_1 = []
-    diag_2 = []
-    for i in range(len(board)):
-        diag_1.append(board[i][i])
-        diag_2.append(board[i][(len(board)-1)-i])
-    if diag_1[1:] == diag_1[:-1]:
-        return (diag_1[0])
-    if diag_2[1:] == diag_2[:-1]:
-        return (diag_2[0])
+def play():
+    board = create_the_board()
+    numbers = create_list_of_numbers(board)
+    print_board(board)
+    while not is_game_over(board, numbers) and not is_draw(board, numbers):
+        user_move = make_user_move(board,numbers)
+        mark_move_on_the_board(board, user_move, "X")
+        if is_game_over(board,numbers) or is_draw(board,numbers):
+            break
+        else:
+            computer_move = make_smart_move(board, numbers)
+            mark_move_on_the_board(board, computer_move, "O")
+    if is_draw(board, numbers) == True:
+        annouce_the_draw()
     else:
-        return False
-
-def is_game_over():
-    if check_diags(board) or check_columns_and_rows(board):
-        return True
-    else:
-        return False
-
-if is_game_over():
-    X_or_O = check_diags(board) or check_columns_and_rows(board)
-    annouce_the_winner(X_or_O)
-
+        X_or_O = check_diags(board) or check_columns_and_rows(board)
+        annouce_the_winner(X_or_O)
+play()
