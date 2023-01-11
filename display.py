@@ -30,4 +30,4 @@ def mark_move_on_the_board(board, move, X_or_O):
             x = int(board.index(row))
             y = int(row.index(move))
             board[x][y] = X_or_O
-            #print_board(board)
+            print_board(board)

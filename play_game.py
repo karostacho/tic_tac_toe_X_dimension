@@ -43,8 +43,8 @@ def play2():
 
 
 results = []
-for x in range(100000):
-    play2()
+for x in range(10):
+    play()
 if ("X" in results):
     print("X was found.")
 if ("O" in results):
