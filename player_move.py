@@ -1,10 +1,5 @@
 from display import print_board, ask_for_move, inform_the_box_is_taken, inform_the_move_is_impossible
-
-def is_box_taken(board, move):
-    for row in board:
-        if move in row:
-            return False
-    return True
+from board import is_box_taken
 
 def make_user_move(board, numbers):
     user_move = ask_for_move()
