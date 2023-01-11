@@ -20,14 +20,14 @@ def inform_the_move_is_impossible(user_move):
 
 def ask_for_size_of_board():
     return input("Please specify the size of your board. How many rows/columns would you like to have?")
-    
+
 def inform_size_of_board_must_be_integer_greater_than_1():
     print("Please provide an integer greater than 1")
 
 def mark_move_on_the_board(board, move, X_or_O):
     for row in board:
         if move in row:
-            x = int(board.index(row)) 
+            x = int(board.index(row))
             y = int(row.index(move))
             board[x][y] = X_or_O
-            print_board(board)
+            #print_board(board)

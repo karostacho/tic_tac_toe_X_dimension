@@ -24,3 +24,11 @@ def create_list_of_numbers(board):
             numbers.append(item)
     return numbers
 
+def create_board(board_size):
+    board = []
+    for i in range(board_size):
+        row = []
+        for j in range(board_size):
+            row.append((((j+1)+(board_size*i))))
+        board.append(row)
+    return board
