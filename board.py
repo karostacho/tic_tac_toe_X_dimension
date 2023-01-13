@@ -50,4 +50,12 @@ def find_lines_on_board(board):
         column = [row[i] for row in board]
         list_of_lines.append(column)
     return list_of_lines
-    
+
+def mark_move_on_the_board(board, move, move_X_or_O):
+    for row in board:
+        if move in row:
+            x = int(board.index(row)) 
+            y = int(row.index(move))
+            board[x][y] = move_X_or_O
+            return move_X_or_O
+            
