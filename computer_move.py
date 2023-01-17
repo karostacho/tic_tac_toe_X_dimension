@@ -49,11 +49,10 @@ def make_smart_move(board, numbers):
     list_of_lines = find_lines_on_board(board)
     winning_move = two_moves_in_the_same_line(board, computer_mark, list_of_lines)
     blocking_move = two_moves_in_the_same_line(board, user_mark, list_of_lines)
-    if not winning_move:
-        computer_move = (blocking_move
+
+    computer_move = (winning_move
+            or blocking_move
             or take_center_number(board)
             or make_move_in_the_same_line(user_mark, list_of_lines, computer_mark)
             or make_random_computer_move(numbers, board))
-        return computer_move
-    else:
-        return winning_move
+    return computer_move
